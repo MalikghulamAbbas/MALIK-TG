@@ -152,7 +152,20 @@
         hideControls: false,
         keyboard: { focused: true, global: true },
         loop: { active: false },
+        i18n: {
+            settings: 'Settings',
+            speed: 'Speed',
+            quality: 'Quality',
+            captions: 'Subtitles',
+            audio: 'Audio'
+        },
+        captions: {
+            active: true,
+            update: true,
+            language: 'auto'
+        }
     });
+    
     function mx_player() {
         const openDownloadLink = downloadlink;
         const openMx = `intent:${openDownloadLink}#Intent;package=com.mxtech.videoplayer.ad;end`;
@@ -164,15 +177,18 @@
         const openVlc = `vlc://${openDownloadLink}`;
         window.location.href = openVlc;
     }
+    
     function km_player() {
         const openDownloadLink = downloadlink;
         const openKmplayer = `intent:${openDownloadLink}#Intent;package=com.kmplayer;end`;
         window.location.href = openKmplayer;
     }
+    
     function download() {
         const openDownloadLink = downloadlink;
         window.location.href = openDownloadLink;
     }
+    
     function get_file() {
         const regex = /(\d+)\?id=(\d+)&/;
         const match = videolink.match(regex);
@@ -183,6 +199,7 @@
             window.location.href = openTG;
         }
     }
+    
     function copyUrl() {
         const url = downloadlink;
         navigator.clipboard.writeText(url)
@@ -193,11 +210,13 @@
                 console.error('Failed to copy URL: ', error);
             });
     }
+    
     function updateVideoSource() {
         const videoElement = document.getElementById('player');
         const newSrc = downloadlink;
         videoElement.src = newSrc;
     }
+    
     window.onload = function () {
         updateVideoSource();
     };
